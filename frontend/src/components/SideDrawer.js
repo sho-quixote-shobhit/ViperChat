@@ -156,7 +156,7 @@ const SideDrawer = () => {
                                     setselectedChat(noti.chat);
                                     setnotification(notification.filter((n) => n !== noti))
                                 }}>
-                                    {noti.chat.isGroupchat ? `New Message in ${noti.chat.chatname}` : `new Message from ${getsender(user, noti.chat.users)}`}
+                                    {noti.chat.isGroupChat ? `New Message in ${noti.chat.chatName}` : `new Message from ${getsender(user, noti.chat.users)}`}
                                 </MenuItem>
                             )
                         })}

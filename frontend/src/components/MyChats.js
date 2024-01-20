@@ -9,8 +9,7 @@ import GroupChatModal from './GroupChatModal';
 
 const MyChats = ({fetchAgain}) => {
 
-    const { selectedChat, setselectedChat, chats, setchats } = ChatState();
-    const [loggeduser, setloggeduser] = useState();
+    const { selectedChat, setselectedChat, chats, setchats , user } = ChatState();
 
     const fetchChats = async () => {
         try {
@@ -35,12 +34,11 @@ const MyChats = ({fetchAgain}) => {
     }
 
     useEffect(() => {
-        setloggeduser(JSON.parse(localStorage.getItem('user')))
         fetchChats()
     }, [fetchAgain])
 
-    const getsender = (loggeduser, users) => {
-        return users[0]._id === loggeduser._id ? users[1].name : users[0].name
+    const getsender = (users) => {
+        return users[0]._id === user._id ? users[1].name : users[0].name
     }
 
     return (
@@ -101,7 +99,7 @@ const MyChats = ({fetchAgain}) => {
                                             borderRadius='lg'
                                             key={chat._id}
                                         >
-                                            <Text m='auto auto'>{!chat.isGroupChat ? (getsender(loggeduser, chat.users)) : (chat.chatName)}</Text>
+                                            <Text m='auto auto'>{!chat.isGroupChat ? (getsender(chat.users)) : (chat.chatName)}</Text>
                                         </Box>
                                     )
                                 })}
